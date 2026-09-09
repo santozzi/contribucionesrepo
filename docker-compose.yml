@@ -1,0 +1,36 @@
+services:
+  backend:
+    build: ./backend
+    container_name: contribuciones-tp-backend
+    restart: unless-stopped
+    environment:
+      PORT: 8080
+      PLANILLA_CSV_FILE: ${PLANILLA_CSV_FILE:-}
+      SHEET_ID: ${SHEET_ID}
+      SHEET_GID: ${SHEET_GID:-0}
+      SHEET_NOMBRE_HOJA: ${SHEET_NOMBRE_HOJA:-}
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY:-}
+      GOOGLE_SERVICE_ACCOUNT_FILE: /app/credenciales/google-service-account.json
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+      SHEET_WEBHOOK_URL: ${SHEET_WEBHOOK_URL:-}
+      SHEET_WEBHOOK_SECRET: ${SHEET_WEBHOOK_SECRET:-}
+      CACHE_TTL_MIN: ${CACHE_TTL_MIN:-360}
+      MAX_COMMITS: ${MAX_COMMITS:-500}
+      CONCURRENCIA: ${CONCURRENCIA:-4}
+      UMBRAL_BAJA: ${UMBRAL_BAJA:-0.4}
+      UMBRAL_GINI: ${UMBRAL_GINI:-0.5}
+      UMBRAL_ULTIMO_MOMENTO: ${UMBRAL_ULTIMO_MOMENTO:-60}
+    volumes:
+      # Cache de GitHub y alias de autores: sobreviven a los rebuilds.
+      - ./data:/app/data
+      # Opcional: dejar aca google-service-account.json para leer una planilla privada.
+      - ./credenciales:/app/credenciales:ro
+
+  frontend:
+    build: ./frontend
+    container_name: contribuciones-tp-frontend
+    restart: unless-stopped
+    ports:
+      - '${PUERTO_WEB:-5190}:80'
+    depends_on:
+      - backend

@@ -1,0 +1,8 @@
+.env
+node_modules/
+dist/
+data/
+*.log
+
+# Clave de la service account de Google: nunca al repo.
+credenciales/*.json

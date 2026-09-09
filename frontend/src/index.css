@@ -1,0 +1,231 @@
+/* ---------- Tokens ---------- */
+:root {
+  color-scheme: light;
+  --surface-1: #fcfcfb;
+  --plano: #f9f9f7;
+  --tinta-1: #0b0b0b;
+  --tinta-2: #52514e;
+  --tinta-3: #898781;
+  --grilla: #e1e0d9;
+  --linea-base: #c3c2b7;
+  --borde: rgba(11, 11, 11, 0.1);
+
+  --serie-1: #2a78d6;
+  --serie-2: #eb6834;
+  --serie-3: #1baf7a;
+  --serie-4: #eda100;
+  --serie-5: #e87ba4;
+  --serie-6: #008300;
+  --serie-7: #4a3aa7;
+  --serie-otros: #898781;
+
+  --bien: #0ca30c;
+  --aviso: #fab219;
+  --serio: #ec835a;
+  --critico: #d03b3b;
+
+  --oro: #b8902b;
+  --plata: #7c7c7c;
+  --bronce: #a15c2e;
+
+  --r: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --surface-1: #1a1a19;
+    --plano: #0d0d0d;
+    --tinta-1: #ffffff;
+    --tinta-2: #c3c2b7;
+    --tinta-3: #898781;
+    --grilla: #2c2c2a;
+    --linea-base: #383835;
+    --borde: rgba(255, 255, 255, 0.1);
+
+    --serie-1: #3987e5;
+    --serie-2: #d95926;
+    --serie-3: #199e70;
+    --serie-4: #c98500;
+    --serie-5: #d55181;
+    --serie-6: #008300;
+    --serie-7: #9085e9;
+
+    --oro: #d9b34d;
+    --plata: #a8a8a8;
+    --bronce: #c17c46;
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --surface-1: #1a1a19;
+  --plano: #0d0d0d;
+  --tinta-1: #ffffff;
+  --tinta-2: #c3c2b7;
+  --tinta-3: #898781;
+  --grilla: #2c2c2a;
+  --linea-base: #383835;
+  --borde: rgba(255, 255, 255, 0.1);
+
+  --serie-1: #3987e5;
+  --serie-2: #d95926;
+  --serie-3: #199e70;
+  --serie-4: #c98500;
+  --serie-5: #d55181;
+  --serie-6: #008300;
+  --serie-7: #9085e9;
+
+  --oro: #d9b34d;
+  --plata: #a8a8a8;
+  --bronce: #c17c46;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--plano);
+  color: var(--tinta-1);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+h1, h2, h3 { margin: 0; font-weight: 650; letter-spacing: -0.01em; }
+h1 { font-size: 20px; }
+h2 { font-size: 16px; }
+h3 { font-size: 14px; }
+a { color: var(--serie-1); }
+
+.app { max-width: 1240px; margin: 0 auto; padding: 20px 24px 64px; }
+
+/* ---------- Cabecera ---------- */
+.cabecera {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  align-items: center; justify-content: space-between;
+  padding-bottom: 16px; margin-bottom: 20px;
+  border-bottom: 1px solid var(--borde);
+}
+.cabecera .sub { color: var(--tinta-2); font-size: 13px; margin-top: 2px; }
+.acciones { display: flex; gap: 8px; flex-wrap: wrap; }
+
+button, .boton {
+  font: inherit; font-size: 13px; cursor: pointer;
+  padding: 7px 13px; border-radius: 8px;
+  border: 1px solid var(--borde); background: var(--surface-1);
+  color: var(--tinta-1); text-decoration: none; display: inline-block;
+}
+button:hover, .boton:hover { border-color: var(--linea-base); }
+button:disabled { opacity: 0.5; cursor: progress; }
+button.primario { background: var(--serie-1); border-color: transparent; color: #fff; }
+
+/* ---------- Tabs ---------- */
+.tabs { display: flex; gap: 4px; margin-bottom: 20px; flex-wrap: wrap; }
+.tabs button {
+  border: none; background: transparent; color: var(--tinta-2);
+  padding: 7px 14px; border-radius: 8px;
+}
+.tabs button[aria-selected='true'] { background: var(--surface-1); color: var(--tinta-1); box-shadow: inset 0 0 0 1px var(--borde); }
+
+/* ---------- Tarjetas ---------- */
+.tarjeta {
+  background: var(--surface-1);
+  border: 1px solid var(--borde);
+  border-radius: var(--r);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+.tarjeta > header { display: flex; flex-wrap: wrap; gap: 10px; align-items: baseline; justify-content: space-between; margin-bottom: 14px; }
+
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.kpi { background: var(--surface-1); border: 1px solid var(--borde); border-radius: var(--r); padding: 14px 16px; }
+.kpi .valor { font-size: 28px; font-weight: 650; line-height: 1.15; }
+.kpi .rotulo { color: var(--tinta-2); font-size: 12.5px; margin-top: 2px; }
+
+/* ---------- Tablas ---------- */
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--grilla); }
+th { color: var(--tinta-2); font-weight: 550; font-size: 12px; text-transform: uppercase; letter-spacing: 0.03em; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+tbody tr:last-child td { border-bottom: none; }
+.scroll-x { overflow-x: auto; }
+
+/* ---------- Chips de estado ---------- */
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12px; padding: 2px 8px; border-radius: 999px;
+  border: 1px solid var(--borde); color: var(--tinta-2); white-space: nowrap;
+}
+.chip .punto { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.chip.alta { color: var(--critico); border-color: color-mix(in srgb, var(--critico) 40%, transparent); }
+.chip.alta .punto { background: var(--critico); }
+.chip.media { color: var(--serio); border-color: color-mix(in srgb, var(--serio) 45%, transparent); }
+.chip.media .punto { background: var(--serio); }
+.chip.info .punto { background: var(--tinta-3); }
+.chip.ok { color: var(--bien); border-color: color-mix(in srgb, var(--bien) 40%, transparent); }
+.chip.ok .punto { background: var(--bien); }
+
+/* ---------- Leyenda ---------- */
+.leyenda { display: flex; flex-wrap: wrap; gap: 12px; margin: 2px 0 10px; font-size: 12.5px; color: var(--tinta-2); }
+.leyenda span { display: inline-flex; align-items: center; gap: 6px; }
+.leyenda i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+
+/* ---------- Tooltip de graficos ---------- */
+.tt {
+  background: var(--surface-1); border: 1px solid var(--linea-base);
+  border-radius: 8px; padding: 9px 11px; font-size: 12.5px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+.tt .tt-titulo { font-weight: 600; margin-bottom: 5px; color: var(--tinta-1); }
+.tt .fila { display: flex; align-items: center; gap: 7px; color: var(--tinta-2); }
+.tt .fila b { color: var(--tinta-1); font-variant-numeric: tabular-nums; margin-left: auto; padding-left: 14px; }
+.tt i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; flex: none; }
+
+/* ---------- Matriz grupo x TP ---------- */
+.matriz td, .matriz th { border-bottom: 1px solid var(--grilla); }
+.celda { display: flex; flex-direction: column; gap: 2px; min-width: 96px; }
+.celda .principal { font-variant-numeric: tabular-nums; font-weight: 550; }
+.celda .detalle { font-size: 11.5px; color: var(--tinta-2); }
+.barra-equidad { display: flex; gap: 2px; margin-top: 3px; }
+.barra-equidad i { height: 5px; flex: 1; border-radius: 2px; background: var(--grilla); }
+
+/* ---------- Podio de ranking ---------- */
+.podio { display: flex; align-items: flex-end; gap: 12px; margin-bottom: 18px; }
+.puesto {
+  flex: 1; min-width: 0; text-align: center;
+  border-radius: var(--r); padding: 14px 10px 16px;
+  border: 1px solid var(--borde); background: var(--plano);
+}
+.puesto-numero { font-size: 22px; font-weight: 700; line-height: 1; margin-bottom: 6px; }
+.puesto-nombre { font-weight: 600; font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.puesto-github { color: var(--tinta-2); font-size: 11.5px; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.puesto-commits { margin-top: 8px; font-size: 15px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.puesto-oro { order: 2; padding-top: 6px; border-color: color-mix(in srgb, var(--oro) 45%, transparent); background: color-mix(in srgb, var(--oro) 14%, var(--surface-1)); }
+.puesto-oro .puesto-numero, .puesto-oro .puesto-commits { color: var(--oro); }
+.puesto-plata { order: 1; border-color: color-mix(in srgb, var(--plata) 45%, transparent); background: color-mix(in srgb, var(--plata) 12%, var(--surface-1)); }
+.puesto-plata .puesto-numero, .puesto-plata .puesto-commits { color: var(--plata); }
+.puesto-bronce { order: 3; border-color: color-mix(in srgb, var(--bronce) 45%, transparent); background: color-mix(in srgb, var(--bronce) 12%, var(--surface-1)); }
+.puesto-bronce .puesto-numero, .puesto-bronce .puesto-commits { color: var(--bronce); }
+.ranking-lista { max-height: 360px; overflow-y: auto; }
+
+/* ---------- Alertas ---------- */
+.alerta { display: flex; gap: 10px; align-items: flex-start; padding: 9px 0; border-bottom: 1px solid var(--grilla); }
+.alerta:last-child { border-bottom: none; }
+.alerta .cuerpo { flex: 1; }
+.alerta .grupo-ref { font-size: 12px; color: var(--tinta-2); }
+
+.vacio { color: var(--tinta-2); padding: 28px 0; text-align: center; }
+.aviso {
+  border: 1px solid color-mix(in srgb, var(--aviso) 45%, transparent);
+  background: color-mix(in srgb, var(--aviso) 9%, var(--surface-1));
+  border-radius: var(--r); padding: 11px 14px; margin-bottom: 16px; font-size: 13px;
+}
+.error { border-color: color-mix(in srgb, var(--critico) 45%, transparent); background: color-mix(in srgb, var(--critico) 9%, var(--surface-1)); }
+
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+.filtros { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+select, input[type='text'] {
+  font: inherit; font-size: 13px; padding: 6px 10px; border-radius: 8px;
+  border: 1px solid var(--borde); background: var(--surface-1); color: var(--tinta-1);
+}
