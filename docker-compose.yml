@@ -3,6 +3,8 @@ services:
     build: ./backend
     container_name: contribuciones-tp-backend
     restart: unless-stopped
+    ports:
+      - '${PUERTO_BACKEND:-5191}:8080'
     environment:
       PORT: 8080
       PLANILLA_CSV_FILE: ${PLANILLA_CSV_FILE:-}
@@ -21,9 +23,7 @@ services:
       UMBRAL_GINI: ${UMBRAL_GINI:-0.5}
       UMBRAL_ULTIMO_MOMENTO: ${UMBRAL_ULTIMO_MOMENTO:-60}
     volumes:
-      # Cache de GitHub y alias de autores: sobreviven a los rebuilds.
       - ./data:/app/data
-      # Opcional: dejar aca google-service-account.json para leer una planilla privada.
       - ./credenciales:/app/credenciales:ro
 
   frontend:
